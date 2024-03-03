@@ -1,6 +1,6 @@
 # Luz Ingá
 
-Pagina simples para a venda de produtos de uma empresa fictícia chamada Luz Ingá.
+Pagina simples para a venda de produtos de uma empresa fictícia chamada Luz Ingá, atividade proposta pela faculdade Anhembi Morumbi, caso queira visualizar a pagina [clique aqui](https://k4w4n.github.io/luz-inga/).
 
 Aqui é possível encontrar os seguintes conceitos:
 
