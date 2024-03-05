@@ -42,6 +42,7 @@ function handleOnSubmit(e) {
     }
 
 }
+
 function ValidateObservation() {
     const observation = inputObservation.value;
     validationObservation.isValid = observation.length > 0;
@@ -57,6 +58,11 @@ function validateEmail() {
     validationEmail.isValid = email.length > 0;
     validationEmail.message = validationEmail.isValid ? '' : 'Por favor, preencha o campo email';
 
+    if (validationEmail.isValid) {
+        validationEmail.isValid = isEmail(email);
+        validationEmail.message = validationEmail.isValid ? '' : 'Informe um email valido';
+    }
+
     inputEmail.parentNode.classList.remove('has-error');
     if (!validationEmail.isValid) inputEmail.parentNode.classList.add('has-error');
     inputEmail.parentNode.querySelector('span.input-error-message').innerHTML = validationEmail.message;
@@ -71,6 +77,11 @@ function validateName() {
     if (!validationName.isValid) inputName.parentNode.classList.add('has-error');
 
     inputName.parentNode.querySelector('span.input-error-message').innerHTML = validationName.message;
+}
+
+function isEmail(email) {
+    const res = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    return res.test(String(email).toLowerCase());
 }
 
 inputName.addEventListener('input', validateName);
