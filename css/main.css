@@ -7,6 +7,10 @@
     font-family: "Roboto", sans-serif;
 }
 
+:root{
+    --error-color: rgb(255, 81, 81);
+}
+
 html,
 body,
 .wrapper {
@@ -118,6 +122,19 @@ body,
     padding: 0.5rem;
 }
 
+.has-error > .input-label {
+    color: var(--error-color);
+}
+
+.has-error > .input-element {
+    border: 1px solid var(--error-color);
+    color: var(--error-color);
+}
+
+.input-error-message {
+    color: var(--error-color);
+}
+
 .button-submit {
     color: #fff;
     background-color: rgb(78, 170, 55);
@@ -137,7 +154,7 @@ body,
 }
 
 @media screen and (max-width: 1500px) {
-    .product-list{
+    .product-list {
         grid-template-columns: repeat(2, 1fr);
     }
 }
@@ -155,7 +172,7 @@ body,
 }
 
 @media screen and (max-width: 500px) {
-    .product-list{
+    .product-list {
         grid-template-columns: repeat(1, 1fr);
     }
 }

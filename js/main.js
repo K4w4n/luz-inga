@@ -11,3 +11,70 @@ const newProductListContent = Array(productQuantity).fill(null).map(generateProd
 
 // Insere os produtos no DOM
 productListDOM.append(...newProductListContent);
+
+const inputName = document.querySelector('#name');
+const inputEmail = document.querySelector('#email');
+const inputObservation = document.querySelector('#observation');
+const submitButton = document.querySelector('button#submit');
+
+const createValidation = (isValid, message) => ({ isValid: true, message });
+const validationName = createValidation();
+const validationEmail = createValidation();
+const validationObservation = createValidation();
+
+submitButton.addEventListener('click', handleOnSubmit);
+
+
+function handleOnSubmit(e) {
+    e.preventDefault();
+
+    validateName();
+    validateEmail();
+    ValidateObservation();
+
+    if (validationName.isValid && validationEmail.isValid && validationObservation.isValid) {
+        console.log({
+            name: inputName.value,
+            email: inputEmail.value,
+            observation: inputObservation.value
+        });
+        alert('Mensagem enviada com sucesso!');
+    }
+
+}
+function ValidateObservation() {
+    const observation = inputObservation.value;
+    validationObservation.isValid = observation.length > 0;
+    validationObservation.message = validationObservation.isValid ? "" : 'Por favor, preencha o campo observação';
+
+    inputObservation.parentNode.classList.remove('has-error');
+    if (!validationObservation.isValid) inputObservation.parentNode.classList.add('has-error');
+    inputObservation.parentNode.querySelector('span.input-error-message').innerHTML = validationObservation.message;
+}
+
+function validateEmail() {
+    const email = inputEmail.value;
+    validationEmail.isValid = email.length > 0;
+    validationEmail.message = validationEmail.isValid ? '' : 'Por favor, preencha o campo email';
+
+    inputEmail.parentNode.classList.remove('has-error');
+    if (!validationEmail.isValid) inputEmail.parentNode.classList.add('has-error');
+    inputEmail.parentNode.querySelector('span.input-error-message').innerHTML = validationEmail.message;
+}
+
+function validateName() {
+    const name = inputName.value;
+    validationName.isValid = name.length > 0;
+    validationName.message = !validationName.isValid ? 'Por favor, preencha o campo nome' : '';
+
+    inputName.parentNode.classList.remove('has-error');
+    if (!validationName.isValid) inputName.parentNode.classList.add('has-error');
+
+    inputName.parentNode.querySelector('span.input-error-message').innerHTML = validationName.message;
+}
+
+inputName.addEventListener('input', validateName);
+
+inputEmail.addEventListener('input', validateEmail);
+
+inputObservation.addEventListener('input', ValidateObservation);
